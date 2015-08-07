@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="C:\Workspace_GIT\Projetos\PHONEGAP_OCR\App_OCR\platforms\android\CordovaLib\assets"/></dataSet><dataSet config="debug"><source path="C:\Workspace_GIT\Projetos\PHONEGAP_OCR\App_OCR\platforms\android\CordovaLib\src\debug\assets"/></dataSet></merger>

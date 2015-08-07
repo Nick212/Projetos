@@ -1,0 +1,84 @@
+﻿<!-- A Próxima WEB a 3.0 vai ser caracterizada por dois novos recuros
+    -> Desenvolvimento SPA
+    -> Criação e Exportação de Componentes WEB
+    -> Podemos criar nossas próprias TAG <ZINA>, <XNXX>
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>App Angular</title>
+    <!-- A GOOGLE está tentando padronizar o layout dos aplicativos (Todo mundo tem que fazer igual) com a mesma carinha através do MATERIAL DESIGN
+        Material Design é um conjunto a desenvolver uma UI Bonita e agradável por usuário. A grosso modo a idéia é trazer o mundo real Borda, Sobra
+        Espaçamentos e Movimentos pra dentro dos campos inclisive temos deversas bibliotecas no mercado que usam os principios e boas práticas do GOOGLE MATERIAL DESIGN
+        MATERIALIZE CSS, IONIC MATERIAL DESIGN, BOOTSTRAP MATERIAL DESIGN, ANGULAR MATERIAL DESIGN-->
+    <link href="node_modules/angular-material/angular-material.min.css" rel="stylesheet" />
+    <link href="node_modules/angular-material-icons/angular-material-icons.css" rel="stylesheet" />
+
+</head>
+
+<!--Pra colocar a aplicação em angular pra rodar DENTRO da página, temos que usar a DIRETIVA NG-APP (DIRETIVA)-->
+<body ng-app="Madrugada">
+    <header>
+        <div>
+            <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+                <md-toolbar class="md-theme-indigo">
+                    <h1 class="md-toolbar-tools">Sis Amigos 1.0</h1>
+                </md-toolbar>
+                <md-content layout-padding>
+                    <md-button ng-click="menuEsquerdo()" href="#/home" class="md-primary" hide-gt-md>
+                        Home
+                    </md-button>
+                    <br/>
+                    <md-button ng-click="menuEsquerdo()" href="#/amigo/listar" class="md-primary" hide-gt-md>
+                        Cadastrar
+                    </md-button>
+                    <br />
+                    <md-button ng-click="menuEsquerdo()" href="#/amigo/cadastrar" class="md-primary" hide-gt-md>
+                        Listar
+                    </md-button>
+                    <p hide-md show-gt-md>
+                        This sidenav is locked open on your device. To go back to the default behavior,
+                        narrow your display.
+                    </p>
+                </md-content>
+            </md-sidenav>
+            <md-toolbar>
+                <div class="md-toolbar-tools">
+                    <md-button class="md-icon-button" aria-label="Settings" ng-click="menuEsquerdo()">
+                        <ng-md-icon icon="list" style="fill: white" size="30"></ng-md-icon>
+                    </md-button>
+                    <h2>
+                        <span>SIS Amigos 1.0</span>
+                    </h2>
+                </div>
+            </md-toolbar>
+        </div>
+    </header>
+
+    <section>
+        <!--Após vincular a aplicação em angular dentro dessa página, temos que falar o LOCAL dela que vamos exibir as páginas filhas
+            Pra isso utilizamos a DIRETIVA NG-VIEW-->
+        <div ng-view>
+
+        </div>
+    </section>
+
+    <!--IMPORT ANGULAR-->
+    <script src="node_modules/angular/angular.min.js"></script>
+    <script src="node_modules/angular-route/angular-route.min.js"></script>
+
+    <!--IMPORT MATERIAL DESIGN-->
+    <script src="node_modules/angular-material/angular-material.min.js"></script>
+    <script src="node_modules/angular-animate/angular-animate.min.js"></script>
+    <script src="node_modules/angular-aria/angular-aria.min.js"></script>
+    <script src="node_modules/angular-material-icons/angular-material-icons.min.js"></script>
+
+    <!--IMPORT INICIALIZACAO APP-->
+    <script src="app/inicializacao.js"></script>
+
+    <!--IMPORT CONTROLLER-->
+    <script src="app/controllers/amigoController.js"></script>
+    <script src="app/controllers/homeController.js"></script>
+
+</body>
+</html>

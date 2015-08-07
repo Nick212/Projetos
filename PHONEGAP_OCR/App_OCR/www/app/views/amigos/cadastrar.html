@@ -1,0 +1,35 @@
+﻿<!-- O Angular Material Design trabalha com a técnica de
+    WEB COMPONENTS ele tem as suas próprias TAGS seus próprios ELEMENTOS e seus próprios ATRIBUTOS -->
+
+<md-content layout-padding class="autoScroll">
+    <md-input-container class="md-icon-float">
+        <label>Nome</label>
+        <ng-md-icon icon="account_box" style="fill: green" size="20"></ng-md-icon> 
+        <input ng-model="user.name" type="text" ng-required="true">
+    </md-input-container>
+
+    <md-input-container class="md-icon-float">
+        <label>E-mail</label>
+        <ng-md-icon icon="thumb_up" style="fill: green" size="20"></ng-md-icon> 
+        <input ng-model="user.email" type="email" ng-required="true">
+    </md-input-container>
+
+    <md-input-container class="md-icon-float">
+        <label>Telefone</label>
+        <ng-md-icon icon="account_box" style="fill: green" size="20"></ng-md-icon> 
+        <input ng-model="user.telefone" type="text" ng-required="true">
+    </md-input-container>
+
+    <md-input-container class="md-icon-float">
+        <label>Data Nascimento</label>
+        <ng-md-icon icon="thumb_up" style="fill: green" size="20"></ng-md-icon> 
+        <input ng-model="user.dtNasc" type="date" ng-required="true">
+    </md-input-container>
+
+    <md-input-container  class="md-icon-float"> 
+        <md-button class="md-raised md-primary">
+            Cadastrar
+        </md-button>
+    </md-input-container>
+
+</md-content>
