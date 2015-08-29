@@ -1,0 +1,7 @@
+E:\DOTZ\DOTZLAB\OCR\SampleOCRRESTProjectCSharp\OCRWebServiceREST.Client\bin\Debug\OCRWebServiceREST.Client.exe.config
+E:\DOTZ\DOTZLAB\OCR\SampleOCRRESTProjectCSharp\OCRWebServiceREST.Client\obj\x86\Debug\OCRWebServiceREST.Client.csprojResolveAssemblyReference.cache
+E:\DOTZ\DOTZLAB\OCR\SampleOCRRESTProjectCSharp\OCRWebServiceREST.Client\bin\Debug\OCRWebServiceREST.Client.exe
+E:\DOTZ\DOTZLAB\OCR\SampleOCRRESTProjectCSharp\OCRWebServiceREST.Client\bin\Debug\OCRWebServiceREST.Client.pdb
+E:\DOTZ\DOTZLAB\OCR\SampleOCRRESTProjectCSharp\OCRWebServiceREST.Client\bin\Debug\Newtonsoft.Json.dll
+E:\DOTZ\DOTZLAB\OCR\SampleOCRRESTProjectCSharp\OCRWebServiceREST.Client\obj\x86\Debug\OCRWebServiceREST.Client.exe
+E:\DOTZ\DOTZLAB\OCR\SampleOCRRESTProjectCSharp\OCRWebServiceREST.Client\obj\x86\Debug\OCRWebServiceREST.Client.pdb
