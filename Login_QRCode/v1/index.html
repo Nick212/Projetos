@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Cross-Browser QRCode generator for Javascript</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+    crossorigin="anonymous">
+
+    <script type="text/javascript" src="jquery.min.js"></script>
+    <script type="text/javascript" src="qrcode.js"></script>
+
+</head>
+
+<body>
+    <header>
+        <div class="jumbotron">
+            <div class="container">
+                <h1>Login QrCode</h1>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="col-md-12">
+            <div class="col-md-12">
+                <div class="input-group">
+                    <p>Code - QRCode</p>
+                    <input class="form-control" id="text" type="text" value="Nicolas" />
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-xs-6 col-md-4">
+                        <div id="qrcode" style="width:100px; height:100px; margin-top:15px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script type="text/javascript">
+            var qrcode = new QRCode(document.getElementById("qrcode"), {
+	width : 350,
+	height : 350
+});
+
+function makeCode () {		
+	var elText = document.getElementById("text");
+	
+	if (!elText.value) {
+		alert("Input a text");
+		elText.focus();
+		return;
+	}
+	
+	qrcode.makeCode(elText.value);
+}
+
+makeCode();
+
+$("#text").
+	on("blur", function () {
+		makeCode();
+	}).
+	on("keydown", function (e) {
+		if (e.keyCode == 13) {
+			makeCode();
+		}
+	});
+        </script>
+
+</body>
+
+</html>
