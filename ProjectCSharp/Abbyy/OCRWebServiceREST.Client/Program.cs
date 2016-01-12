@@ -25,8 +25,8 @@ namespace OCRWebServiceREST.Client
             try
             {
 		        // Provide your username and license code
-                string license_code = "155F97E0-BBAC-47BE-9DFD-E51EE721232E";//<your license_code>;
-                string user_name = "NICOLAS";        ///<user_name>;
+                string license_code = "D9F54B35-8803-45EF-ADB6-69B82B73F196";//<your license_code>;
+                string user_name = "NICKCHARLES";        ///<user_name>;
 
                 /*
 	
@@ -74,7 +74,7 @@ namespace OCRWebServiceREST.Client
 
 
                 // Process Document 
-                ProcessDocument(user_name, license_code, "C:\\1a.jpg");
+                ProcessDocument(user_name, license_code, @"F:\Workspace_GIT\Projetos\Projetos\ProjectCSharp\IMG_Teste\DCP8152_16_007488.jpg");
 
                 // Get Account information
                 PrintAccountInformation(user_name, license_code);
@@ -215,7 +215,7 @@ namespace OCRWebServiceREST.Client
             {
                 for (int page = 0; page < ocrResponse.OCRText[zone].Count; page++)
                 {
-                    Console.WriteLine(string.Format("Extracted text from page №{0}, zone №{1} :{2}", page, zone, ocrResponse.OCRText[zone][page]));
+                    Console.WriteLine(string.Format("Extracted text from page №{0}, zone №{1} :{2} \n", page, zone, ocrResponse.OCRText[zone][page]));
                 }
             }
         }
