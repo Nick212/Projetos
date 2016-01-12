@@ -13,64 +13,42 @@
     <script type="text/javascript" src="jquery.min.js"></script>
     <script type="text/javascript" src="qrcode.js"></script>
 
+
 </head>
 
 <body>
     <header>
         <div class="jumbotron">
-            <div class="container">
+            <div class="container" hidden>
                 <h1>Login QrCode</h1>
             </div>
         </div>
     </header>
 
-    <div class="container">
-        <div class="col-md-12">
-            <div class="col-md-12">
+    <section class="container">
+
+        <div class="row">
+            <div class="col-xs-12 col-md-3">
                 <div class="input-group">
-                    <p>Code - QRCode</p>
-                    <input class="form-control" id="text" type="text" value="Nicolas" />
+                    <input class="form-control" id="text" placeholder="Codigo" type="text" value="Nicolas" />
                 </div>
-                <hr>
-                <div class="row">
-                    <div class="col-xs-6 col-md-4">
-                        <div id="qrcode" style="width:100px; height:100px; margin-top:15px;"></div>
-                    </div>
+            </div>
+            <div class="col-xs-6 col-md-9">
+                <div class="">
+                    <button class="btn btn-primary" id="btnAutenticar" >Autenticar</button>
                 </div>
             </div>
         </div>
+        <hr>
+        <div class="row">
+            <div class="col-xs-6 col-md-4">
+                <div id="qrcode"></div>
+            </div>
+        </div>
 
-        <script type="text/javascript">
-            var qrcode = new QRCode(document.getElementById("qrcode"), {
-	width : 350,
-	height : 350
-});
+    </section>
 
-function makeCode () {		
-	var elText = document.getElementById("text");
-	
-	if (!elText.value) {
-		alert("Input a text");
-		elText.focus();
-		return;
-	}
-	
-	qrcode.makeCode(elText.value);
-}
-
-makeCode();
-
-$("#text").
-	on("blur", function () {
-		makeCode();
-	}).
-	on("keydown", function (e) {
-		if (e.keyCode == 13) {
-			makeCode();
-		}
-	});
-        </script>
-
+    <script type="text/javascript" src="js/login.js"></script>
 </body>
 
 </html>
