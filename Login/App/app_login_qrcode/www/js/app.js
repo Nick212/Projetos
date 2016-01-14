@@ -119,10 +119,12 @@ function scan() {
 
 function sendToken(){
     token = "asdliasld";
+    var $txtCep = $('#txtCep').val();
     if(token !== null && token !== undefined){    
         alert("Token: " + token + "\n Sending...");
-        $.get("http://cep.correiocontrol.com.br/08330150.json", function(data, status){
-        alert("Data: " + data + "\nStatus: " + status);
+        $.get("http://cep.correiocontrol.com.br/" + $txtCep +".json", function(data, status){
+            console.log(data.cep);
+        alert("End: " + data.logradouro);
         });
     }
     //alert("Token está  Nulo");
