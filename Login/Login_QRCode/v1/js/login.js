@@ -38,14 +38,9 @@ $("#text").
 
 var token = "Teste";
 
-window.onload = function () {
+$(document).ready(function () {
     generatorCode();
-    // var tokenGerado = generatorCode();
-    // if (tokenGerado !== undefined) {
-    //     token = tokenGerado.object.token;
-    //     $("text").value(token);
-    // }
-};
+});
 
 $("#btnGerarToken").click(function () {
     generatorCode();
@@ -59,25 +54,25 @@ var generatorCode = function (data) {
                 console.log(data);
                 token = data.object.token;
                 $("#text").val(token);
-                $("#response1").html("Token: "+ data.object.token);
+                $("#response1").html("Token: " + data.object.token);
                 $("#response2").html("Tipo: " + data.object.tipo);
                 $("#response3").html("Extra: " + data.object.extra);
-                $("#response4").html("Data Inclusão: "+ data.object.dataInclusao);
+                $("#response4").html("Data Inclusão: " + data.object.dataInclusao);
                 $("#response5").html("Usuario Id: " + data.object.usuarioId);
                 $("#response6").html("Valido Ate: " + data.object.validoAte);
                 $("#response7").html("Data Utilizacao: " + data.object.dataUtilizacao);
                 $("#response8").html("Aplicacao ID: " + data.object.aplicacaoId);
                 $("#response9").html("Documento: " + data.object.documento);
                 $("#response10").html("ID Autor Requisicao: " + data.object.idAutorRequisicao);
-                
+
                 makeCode();
             }
             else {
                 alert("ERROR: " + data.message);
             }
         }, "json");
-} 
-    
+}
+
 /*----------------------------------------------
                 Consumer Login
 ----------------------------------------------*/
@@ -86,6 +81,7 @@ var obterStatusAutenticacao = function () {
 }
 
 var triggerAutentication = function () {
+  var token = $("#text").val();
     $.get("http://localhost:2121/autentication/api/login?id=+" + token,
         function (data) {
             if (data.object != null && data.object != undefined && data.hasError === true) {
@@ -103,10 +99,4 @@ var setTrigger = function () {
 
 $("#btnAutenticar").click(function () {
     setTrigger();
-}); 
-
-
-
-
-
-    
+});

@@ -12,52 +12,56 @@ using SwLoginAPI.Models;
 
 namespace SwLoginAPI.Controllers
 {
+    [RoutePrefix("api")]
     public class LoginController : ApiController
     {
 
         [HttpGet]
-        [Route("api/login")]
+        [Route("login")]
         public ResultObject LoginQrCode(string id)
         {
+            var tokenBsvc = DotzCore.GetBusinessService<ITokenBSvc>();
+            
 
-            var newToken = GetNewToken();
-            if (newToken != null)
+            if (id != null)
             {
                 return new ResultObject()
                 {
                     Message = "SUCESSO",
                     HasError = true,
-                    Object = newToken
+                    Object = id
                 };
             }
             return new ResultObject()
             {
                 Message = "ERRO",
                 HasError = false,
-                Object = newToken
+                Object = id
             };
         }
 
         [HttpGet]
-        [Route("api/generatorToken")]
-        public ResultObject GerarToken()
+        [Route("generatorToken")]
+        public IHttpActionResult GerarToken()
         {
             var newToken = GetNewToken();
             if (newToken != null)
             {
-                return new ResultObject()
+                return Ok(new
                 {
-                    Message = "SUCESSO",
+                    Message
+                        = "SUCESSO",
                     HasError = true,
                     Object = newToken
-                };
+                });
+
             }
-            return new ResultObject()
+            return Ok(new
             {
                 Message = "ERRO",
                 HasError = false,
                 Object = newToken
-            };
+            });
         }
 
         private AdmTokenFila GetNewToken()
