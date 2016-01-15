@@ -5,7 +5,7 @@
       "projectTypeName": "com.intel.xdk.projecttype.jsapp",
       "src": "jsapp/sample-barcode-scanner/sample.zip",
       "projectGuid": "0390d24f-7af2-4156-aeb8-0e752586d65a",
-      "lastModifiedDate": 1452774525022,
+      "lastModifiedDate": 1452888148115,
       "creationDate": 1452773881669
     },
     "XDK-app-designer": "false",
@@ -107,13 +107,18 @@
         "appName_": "app_login_qrcode",
         "appID_": "xdk.intel.demo.barcodescanner",
         "appAccess_": {
-          "mode": "legacy",
+          "mode": "whitelist",
           "network": [
             "http://debug-software.intel.com/*",
-            "https://debug-software.intel.com/*"
+            "https://debug-software.intel.com/*",
+            "http://diegocavalca.com"
           ],
-          "intents": [],
-          "navigation": []
+          "intents": [
+            "http://diegocavalca.com"
+          ],
+          "navigation": [
+            "http://diegocavalca.com"
+          ]
         },
         "icons_": [],
         "splashes_": [],
@@ -139,13 +144,21 @@
         "appName_": "app_login_qrcode",
         "appID_": "xdk.intel.demo.barcodescanner",
         "appAccess_": {
-          "mode": "legacy",
+          "mode": "whitelist",
           "network": [
             "http://debug-software.intel.com/*",
-            "https://debug-software.intel.com/*"
+            "https://debug-software.intel.com/*",
+            "http://diegocavalca.com",
+            "http://cep.correiocontrol.com.br/"
           ],
-          "intents": [],
-          "navigation": []
+          "intents": [
+            "http://diegocavalca.com",
+            "http://cep.correiocontrol.com.br/"
+          ],
+          "navigation": [
+            "http://diegocavalca.com",
+            "http://cep.correiocontrol.com.br/"
+          ]
         },
         "icons_": [],
         "splashes_": [],

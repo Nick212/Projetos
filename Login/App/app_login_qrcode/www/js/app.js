@@ -126,6 +126,23 @@ function sendToken(){
             console.log(data.cep);
         alert("End: " + data.logradouro);
         });
+        //$.ajax({
+        //    type: "GET",
+        //    url: "http://diegocavalca.com/articles/sistemadeclientes/api/clientes",
+        //    timeout: 3000,
+        //    contentType: "application/json; charset=utf-8",
+        //    //dataType: "jsonp",
+        //    success: function (result, jqXHR) {
+ //
+        //        // Interpretando retorno JSON...
+        //        var clientes = JSON.parse(result);
+        //        alert("Sucesso!!!");
+ //
+        //    },
+        //    error: function (jqXHR, status) {
+        //        alert("Erro!!!");
+        //    }
+        //});
     }
     //alert("Token está  Nulo");
     
