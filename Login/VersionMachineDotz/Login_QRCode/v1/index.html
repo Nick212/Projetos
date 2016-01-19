@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Cross-Browser QRCode generator for Javascript</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+    crossorigin="anonymous">
+
+    <script type="text/javascript" src="jquery.min.js"></script>
+    <script type="text/javascript" src="qrcode.js"></script>
+
+
+</head>
+
+<body>
+    <header>
+        <div class="jumbotron">
+            <div class="container" hidden>
+                <h1>Login QrCode</h1>
+            </div>
+        </div>
+    </header>
+
+    <section class="container">
+
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="input-group">
+                    <input type="text" class="form-control" id="text" type="text" placeholder="Code Here... ">
+                    <span class="input-group-btn">
+                        <button  id="btnGerarToken" class="btn btn-warning" type="button">Gerar Token</button>
+                    </span>
+                    <span class="input-group-btn">
+                        <button id="btnAutenticar" class="btn btn-primary" type="button">Autenticar</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-xs-6 col-md-4">
+                <div id="qrcode"></div>
+            </div>
+        </div>
+
+        <div class="content" style="padding-top:50px;">
+            <label class="" style="font-size:20px;">Response</label>
+            <div class="row ">
+                <div class="col-lg-6">
+                    <label id="response1"></label>
+                </div>
+            </div>
+            <div class="row ">
+                <div class="col-lg-6">
+                    <label id="response2"></label>
+                </div>
+            </div>
+            <div class="row ">
+                <div class="col-lg-6">
+                    <label id="response3"></label>
+                </div>
+            </div>
+            <div class="row ">
+                <div class="col-lg-6">
+                    <label id="response4"></label>
+                </div>
+            </div>
+            <div class="row ">
+                <div class="col-lg-6">
+                    <label id="response5"></label>
+                </div>
+            </div>
+            <div class="row ">
+                <div class="col-lg-6">
+                    <label id="response6"></label>
+                </div>
+            </div>
+            <div class="row ">
+                <div class="col-lg-6">
+                    <label id="response7"></label>
+                </div>
+            </div>
+            <div class="row ">
+                <div class="col-lg-6">
+                    <label id="response8"></label>
+                </div>
+            </div>
+            <div class="row ">
+                <div class="col-lg-6">
+                    <label id="response9"></label>
+                </div>
+            </div>
+            <div class="row ">
+                <div class="col-lg-6">
+                    <label id="response10"></label>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script type="text/javascript" src="js/login.js"></script>
+</body>
+
+</html>
