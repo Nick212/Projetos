@@ -108,6 +108,6 @@ F:\Workspace_GIT\Projetos\Login\SwLoginAPI\SwLoginAPI\bin\Microsoft.Owin.Securit
 F:\Workspace_GIT\Projetos\Login\SwLoginAPI\SwLoginAPI\bin\Microsoft.Owin.Security.Twitter.xml
 F:\Workspace_GIT\Projetos\Login\SwLoginAPI\SwLoginAPI\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 F:\Workspace_GIT\Projetos\Login\SwLoginAPI\SwLoginAPI\bin\System.Web.Http.Owin.xml
-F:\Workspace_GIT\Projetos\Login\SwLoginAPI\SwLoginAPI\obj\x64\Release\SwLoginAPI.csprojResolveAssemblyReference.cache
 F:\Workspace_GIT\Projetos\Login\SwLoginAPI\SwLoginAPI\obj\x64\Release\SwLoginAPI.dll
 F:\Workspace_GIT\Projetos\Login\SwLoginAPI\SwLoginAPI\obj\x64\Release\SwLoginAPI.pdb
+F:\Workspace_GIT\Projetos\Login\SwLoginAPI\SwLoginAPI\obj\x64\Release\SwLoginAPI.csprojResolveAssemblyReference.cache

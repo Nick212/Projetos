@@ -4,44 +4,83 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Mvc;
 using System.Xml.Linq;
 using Dotz.Core.Business.Administracao.Aplicacao.Interface;
+using Dotz.Core.Business.ContaCorrente.Usuario.Interface;
 using Dotz.Core.Data.Administracao.Aplicacao.Model.Entities;
 using Dotz.Core.Data.Administracao.Aplicacao.Model.ValueObjects;
 using SwLoginAPI.Models;
 
 namespace SwLoginAPI.Controllers
 {
-    [RoutePrefix("api")]
+    [System.Web.Http.RoutePrefix("api")]
     public class LoginController : ApiController
     {
 
-        [HttpGet]
-        [Route("login")]
-        public ResultObject LoginQrCode(string id)
+        /// <summary>
+        /// App envia Token a partir da leitura do Qrcode(Token)
+        /// </summary>
+        /// <param name="token">Token</param>
+        /// <returns></returns>
+        [System.Web.Http.HttpGet]
+        [System.Web.Http.Route("auth")]
+        public IHttpActionResult AuthQrCode(string token, int idAutorRequest)
         {
-            var tokenBsvc = DotzCore.GetBusinessService<ITokenBSvc>();
-            
 
-            if (id != null)
+            var tokenBsvc = DotzCore.GetBusinessService<ITokenBSvc>();
+            var usuarioBsvc = DotzCore.GetBusinessService<IUsuarioBSvc>();
+            var user = usuarioBsvc.ObterUsuarioPorId(idAutorRequest);
+
+            var usuarioId = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["USUARIO_VALIDATOR_TOKEN"]);
+            var aplicacaoId = new Guid(System.Configuration.ConfigurationManager.AppSettings["APLICACAO_ID_SITE"]);
+
+            var validToken = tokenBsvc.ObterPorToken(token);
+            var guIdtoken = new Guid(token);
+
+            if (validToken != null && user != null)
             {
-                return new ResultObject()
+                
+                var alterResult = tokenBsvc.Alterar(new AdmTokenFila()
                 {
-                    Message = "SUCESSO",
-                    HasError = true,
-                    Object = id
-                };
+                    AplicacaoId = new Guid(System.Configuration.ConfigurationManager.AppSettings["APLICACAO_ID_SITE"]),
+                    Token = new Guid(token),
+                    Documento = user.Documento,
+                    IdAutorRequisicao = idAutorRequest,
+                    UsuarioId =  validToken.UsuarioId,
+                    DataInclusao = validToken.DataInclusao,
+                    DataUtilizacao = validToken.DataUtilizacao,
+                    Extra = validToken.Extra,
+                    Tipo = validToken.Tipo,
+                    ValidoAte = validToken.ValidoAte
+                });
+                var isValidToken = tokenBsvc.ValidarToken(guIdtoken, aplicacaoId, usuarioId);
+
+                if (isValidToken && !(alterResult <= 0))
+                {
+                    return Ok(new
+                    {
+                        Message = "Sucesso na autenticacao do Token",
+                        HasError = false,
+                        Object = isValidToken
+                    });
+                }
             }
-            return new ResultObject()
+            return Ok(new
             {
-                Message = "ERRO",
-                HasError = false,
-                Object = id
-            };
+                Message = "Erro na autenticacao do Token",
+                HasError = true,
+                Object = validToken
+            });
         }
 
-        [HttpGet]
-        [Route("generatorToken")]
+
+        /// <summary>
+        /// Web Site Solicita Token
+        /// </summary>
+        /// <returns> Action Result of the Request HTTP </returns>
+        [System.Web.Http.HttpGet]
+        [System.Web.Http.Route("generatorToken")]
         public IHttpActionResult GerarToken()
         {
             var newToken = GetNewToken();
@@ -49,50 +88,59 @@ namespace SwLoginAPI.Controllers
             {
                 return Ok(new
                 {
-                    Message
-                        = "SUCESSO",
-                    HasError = true,
+                    Message = "Sucesso ao Gerar o Token",
+                    HasError = false,
                     Object = newToken
                 });
 
             }
             return Ok(new
             {
-                Message = "ERRO",
-                HasError = false,
+                Message = "Erro ao Gerar Token",
+                HasError = true,
                 Object = newToken
             });
         }
 
         private AdmTokenFila GetNewToken()
         {
-            var usuarioId = 7379;
-
             var tokenBsvc = DotzCore.GetBusinessService<ITokenBSvc>();
-            
+            var usuarioId = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["USUARIO_GENERETOR_TOKEN"]);
             var tempoExpiracaoResgateSenha = DotzCore.Application.Parameters.Get<int>("TEMPO_EXPIRACAO_RESGATE_SENHA_EMAIL");
-            var tokenGerado = tokenBsvc.CriarToken(eTipoTokenFila.AutenticacaoUsuario, usuarioId, DateTime.Now.AddMinutes(tempoExpiracaoResgateSenha));
-            
+            var aplicacaoId = System.Configuration.ConfigurationManager.AppSettings["APLICACAO_ID_SITE"];
+
+            var tokenGerado = tokenBsvc.CriarToken(eTipoTokenFila.AutenticacaoUsuario, usuarioId, DateTime.Now.AddMinutes(tempoExpiracaoResgateSenha),aplicacaoId);
+
             return tokenGerado;
         }
 
-        private AdmTokenFila getUserToken(Guid token)
+        [System.Web.Http.HttpGet]
+        [System.Web.Http.Route("verifyToken")]
+        public IHttpActionResult VerifyAuthToken(string token)
         {
-            var aplicacationId = "";
-            
+            //Todo  -   Verificar se está tendo mais que uma requisição Limitar no maximo 3 requisição por Ip, a partir do primeiro request
+
             var tokenBsvc = DotzCore.GetBusinessService<ITokenBSvc>();
+            var guidToken = new Guid(token);
+
+            var statusToken = tokenBsvc.Consultar(guidToken);
 
 
-            tokenBsvc.CriarToken(eTipoTokenFila.AutenticacaoAniversarioAtualizacaoCadastral,
-                1321231,
-                DateTime.Now,
-                aplicacationId);
-            return tokenBsvc.Consultar(token);
-        
-        
+            if (statusToken != null)
+            {
+                return Ok(new
+                {
+                    Message = "Sucesso ao Verificar o Token",
+                    HasError = false,
+                    Object = statusToken
+                }); 
+            }
+            return Ok(new
+            {
+                Message = "Erro ao Verifcar Token",
+                HasError = true,
+                Object = statusToken
+            });
         }
-
-    
-
     }
 }
