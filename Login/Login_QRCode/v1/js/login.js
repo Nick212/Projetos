@@ -38,7 +38,7 @@ $("#text").
 
 var token = "Teste";
 
-$(document).ready(function () {
+$(window).ready(function () {
     generatorCode();
 });
 
@@ -48,7 +48,7 @@ $("#btnGerarToken").click(function () {
 
 var generatorCode = function (data) {
     $.get(
-        "http://localhost:2121/autentication/api/generatorToken",
+        "http://localhost/SwLoginAPI/api/generatorToken",
         function (data) {
             if (data.object != null && data.object != undefined && data.hasError === true) {
                 console.log(data);
@@ -74,15 +74,20 @@ var generatorCode = function (data) {
 }
 
 /*----------------------------------------------
-                Consumer Login
+                Listener Login
 ----------------------------------------------*/
-var obterStatusAutenticacao = function () {
-    return;
-}
+setInterval( function(){
+    var resultAuth = verifyStatusToken();
+    console.log("Em Here")
+ }, 3000);
 
-var triggerAutentication = function () {
+/*----------------------------------------------
+                Authentication Login
+----------------------------------------------*/
+
+var verifyStatusToken = function () {
   var token = $("#text").val();
-    $.get("http://localhost:2121/autentication/api/login?id=+" + token,
+    $.get("http://localhost/SwLoginAPI/api/verifytoken?token=" + token,//http://localhost/SwLoginAPI/api/verifytoken?token=f58c27c3-8dee-4690-ba03-7698c6b6cba1
         function (data) {
             if (data.object != null && data.object != undefined && data.hasError === true) {
                 console.log(data);
@@ -94,7 +99,7 @@ var triggerAutentication = function () {
 };
 
 var setTrigger = function () {
-    var statusAuth = triggerAutentication();
+    var statusAuth = verifyStatusToken();
 };
 
 $("#btnAutenticar").click(function () {
