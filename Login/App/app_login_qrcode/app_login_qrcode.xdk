@@ -5,7 +5,7 @@
       "projectTypeName": "com.intel.xdk.projecttype.jsapp",
       "src": "jsapp/sample-barcode-scanner/sample.zip",
       "projectGuid": "0390d24f-7af2-4156-aeb8-0e752586d65a",
-      "lastModifiedDate": 1452888148115,
+      "lastModifiedDate": 1453307819011,
       "creationDate": 1452773881669
     },
     "XDK-app-designer": "false",
@@ -91,6 +91,28 @@
         "cordovaVersion": ">=3.0.0",
         "dependedBy": [],
         "checksum": "980170d7"
+      },
+      {
+        "id": "cordova-plugin-network-information",
+        "name": "Network Information",
+        "version": "1.1.0",
+        "originType": "cordova.io",
+        "origin": "cordova-plugin-network-information",
+        "gitref": "",
+        "paramvals": {},
+        "sourceLocation": "plugins/cordova-plugin-network-information",
+        "selectedState": "Included",
+        "checksum": "4be25d7c",
+        "dependsOn": [],
+        "topLevel": true,
+        "permissions": {
+          "android:name": [
+            "android.permission.ACCESS_NETWORK_STATE"
+          ]
+        },
+        "description": "Cordova Network Information Plugin",
+        "data": {},
+        "dependedBy": []
       }
     ],
     "buildConfigurations": {
@@ -111,13 +133,13 @@
           "network": [
             "http://debug-software.intel.com/*",
             "https://debug-software.intel.com/*",
-            "http://diegocavalca.com"
+            "http://10.11.4.138/SwLoginAPI/api"
           ],
           "intents": [
-            "http://diegocavalca.com"
+            "http://10.11.4.138/SwLoginAPI/api"
           ],
           "navigation": [
-            "http://diegocavalca.com"
+            "http://10.11.4.138/SwLoginAPI/api"
           ]
         },
         "icons_": [],

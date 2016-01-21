@@ -73,80 +73,48 @@ function scan() {
     console.log(fName, "exit");
 }
 
-//function sendAutentication(url, callback,postData){
-//    var req = createXMLHTTPObject();
-//    if(!req)
-//        alert("Erro ao Criar o request");return;
-//    
-//    var method = (postData) ? "POST" : "GET";
-//    req.open(method, url, true);
-//    req.setRequestHeader('Content-type','application/x-www-form-urlencoded');
-//    req.onreadystatechange = funtion(){
-//        if(req.readyState != 4) return;
-//        if(req.status != 200 && req.status != 304){
-//            alert('HTTP Error ' + req.status);
-//        return;
-//    }
-//    callback(req);
-//    }
-//    if(req.readyState == 4){
-//        alert("readystate = " req.readyState)
-//        return;
-//    }
-//    req.send(postData);
-//}
-//
-//var XMLHttpFactories = [
-//    function () {return new XMLHttpRequest()},
-//    function () {return new ActiveXObject("Msxml2.XMLHTTP")},
-//    function () {return new ActiveXObject("Msxml3.XMLHTTP")},
-//    function () {return new ActiveXObject("Microsoft.XMLHTTP")}
-//];
-//
-//function createXMLHTTPObject(){
-//    var xmlhttp = false;
-//    for(var i = 0; i<XMLHttpFactories.length;i++){
-//        try{
-//            xmlhttp = XMLHTTPFactories[i]();
-//        }
-//        catch(e){
-//            alert("Error: " + e)
-//            continue;
-//            }
-//        break;
-//    }
-//}
-
 function sendToken(){
-    token = "asdliasld";
-    var $txtCep = $('#txtCep').val();
-    if(token !== null && token !== undefined){    
-        alert("Token: " + token + "\n Sending...");
-        $.get("http://cep.correiocontrol.com.br/" + $txtCep +".json", function(data, status){
-            console.log(data.cep);
-        alert("End: " + data.logradouro);
-        });
-        //$.ajax({
-        //    type: "GET",
-        //    url: "http://diegocavalca.com/articles/sistemadeclientes/api/clientes",
-        //    timeout: 3000,
-        //    contentType: "application/json; charset=utf-8",
-        //    //dataType: "jsonp",
-        //    success: function (result, jqXHR) {
- //
-        //        // Interpretando retorno JSON...
-        //        var clientes = JSON.parse(result);
-        //        alert("Sucesso!!!");
- //
-        //    },
-        //    error: function (jqXHR, status) {
-        //        alert("Erro!!!");
-        //    }
-        //});
+    
+    //TESTE
+    //token = "b5ecd1b3-de8a-4727-b4e0-4e411a08ccc5";
+    
+    var $txtCpf = $('#txtCpf').val();
+    if($txtCpf !== undefined && $txtCpf !== null && $txtCpf !== ""){
+        getUser($txtCpf);    
     }
-    //alert("Token está  Nulo");
+    else{
+        alert("Digite o CPF"); 
+        return;
+    }
     
 }
+
+function getUser ($txtCpf){
+    $.get("http://10.11.4.138/SwLoginAPI/api/user?document=" + $txtCpf, function(data, status){
+        if(data.hasError !== true){
+            alert('SUCESSO : Ao obter Id do Usuario' + data.object.usuarioId);
+            authenticToken(token,data.object.usuarioId);
+        }else{
+            alert('ERRO : Ao obter Id do Usuario');
+            return;
+        }
+
+    });
+}
+
+function authenticToken(token, userId){
+    if(token !== null && token !== undefined && token !== ""){    
+        $.get("http://10.11.4.138/SwLoginAPI/api/auth?token=" + token + "&idAutorRequest=" + userId , function(data, status){
+            alert("Sucesso ao validar o Token: " + token);
+            console.log(data);
+        });
+    }
+    else{
+        alert("Erro ao validar o Token : " + token);
+        return;
+    }
+}
+
 
 
 
