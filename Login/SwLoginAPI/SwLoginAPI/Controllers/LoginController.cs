@@ -1,30 +1,45 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
-using System.Web.Mvc;
-using System.Xml.Linq;
 using Dotz.Core.Business.Administracao.Aplicacao.Interface;
 using Dotz.Core.Business.ContaCorrente.Usuario.Interface;
 using Dotz.Core.Data.Administracao.Aplicacao.Model.Entities;
 using Dotz.Core.Data.Administracao.Aplicacao.Model.ValueObjects;
-using SwLoginAPI.Models;
+
 
 namespace SwLoginAPI.Controllers
 {
-    [System.Web.Http.RoutePrefix("api")]
+    [RoutePrefix("api")]
     public class LoginController : ApiController
     {
+        [HttpGet]
+        [Route("user")]
+        public IHttpActionResult GetIdentifierUser(string document)
+        {
+            var user = DotzCore.GetBusinessService<IUsuarioBSvc>().ObterUsuarioPorIdentificador(document);
+            if (user != null)
+            {
+                return Ok(new
+                {
+                    Message = "Sucesso na verificação do usuario",
+                    HasError = false,
+                    Object = user
+                });
+            }
+            return Ok(new
+            {
+                Message = "Erro na verificação do usuario",
+                HasError = true,
+                Object = user
+            });
+        }
 
         /// <summary>
         /// App envia Token a partir da leitura do Qrcode(Token)
         /// </summary>
         /// <param name="token">Token</param>
         /// <returns></returns>
-        [System.Web.Http.HttpGet]
-        [System.Web.Http.Route("auth")]
+        [HttpGet]
+        [Route("auth")]
         public IHttpActionResult AuthQrCode(string token, int idAutorRequest)
         {
 
@@ -73,14 +88,13 @@ namespace SwLoginAPI.Controllers
                 Object = validToken
             });
         }
-
-
+        
         /// <summary>
         /// Web Site Solicita Token
         /// </summary>
         /// <returns> Action Result of the Request HTTP </returns>
-        [System.Web.Http.HttpGet]
-        [System.Web.Http.Route("generatorToken")]
+        [HttpGet]
+        [Route("generatorToken")]
         public IHttpActionResult GerarToken()
         {
             var newToken = GetNewToken();
@@ -114,8 +128,8 @@ namespace SwLoginAPI.Controllers
             return tokenGerado;
         }
 
-        [System.Web.Http.HttpGet]
-        [System.Web.Http.Route("verifyToken")]
+        [HttpGet]
+        [Route("verifyToken")]
         public IHttpActionResult VerifyAuthToken(string token)
         {
             //Todo  -   Verificar se está tendo mais que uma requisição Limitar no maximo 3 requisição por Ip, a partir do primeiro request

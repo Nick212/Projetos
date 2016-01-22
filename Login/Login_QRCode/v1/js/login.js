@@ -40,17 +40,22 @@ var token = "Teste";
 
 $(window).ready(function () {
     generatorCode();
+    /*----------------------------------------------
+                    Listener Authentication
+    ----------------------------------------------*/
+    setInterval(verifyAutentication, 3000);
 });
 
 $("#btnGerarToken").click(function () {
     generatorCode();
+
 });
 
 var generatorCode = function (data) {
     $.get(
         "http://localhost/SwLoginAPI/api/generatorToken",
         function (data) {
-            if (data.object != null && data.object != undefined && data.hasError === true) {
+            if (data.object != null && data.object != undefined && data.hasError !== true) {
                 console.log(data);
                 token = data.object.token;
                 $("#text").val(token);
@@ -68,12 +73,15 @@ var generatorCode = function (data) {
                 makeCode();
             }
             else {
-                alert("ERROR: " + data.message);
+                console.log("ERROR: " + data.message);
             }
         }, "json");
 }
 
+
+
 /*----------------------------------------------
+<<<<<<< HEAD
                 Listener Login
 ----------------------------------------------*/
 setInterval( function(){
@@ -88,18 +96,39 @@ setInterval( function(){
 var verifyStatusToken = function () {
   var token = $("#text").val();
     $.get("http://localhost/SwLoginAPI/api/verifytoken?token=" + token,//http://localhost/SwLoginAPI/api/verifytoken?token=f58c27c3-8dee-4690-ba03-7698c6b6cba1
+=======
+                Auth Login
+----------------------------------------------*/
+var verifyAutentication = function () {
+  var token = $("#text").val();
+    $.get("http://localhost/SwLoginAPI/api/verifytoken?token=" + token,
+>>>>>>> eb2cc0ebcae7a113f1eff3186312a645b0322b5f
         function (data) {
-            if (data.object != null && data.object != undefined && data.hasError === true) {
-                console.log(data);
-            }
-            else {
-                alert("ERROR: " + data.message);
+            if (data.object != null && data.object != undefined && data.hasError !== true) {
+              if(data.object.token === token && data.object.dataUtilizacao !== null && data.object.documento !== undefined){
+                console.log("SUCESSO: "+ data.object.documento + "\n" + data.object);
+                var info = {
+                  app:data.object.aplicacaoId,
+                  identifier:data.object.documento,
+                  token: data.object.token
+                };
+                window.location = "http://www.google.com";
+                //$.redirect("https://hmg.dotz.com.br/Authenticate.aspx", info, "POST");
+              }else{
+                console.log("ERRO TOKEN NÃO VALIDADO : "+ data.object);
+              }
+            }else {
+                console.log("ERROR: " + data.message);
             }
         }, "json");
 };
 
 var setTrigger = function () {
+<<<<<<< HEAD
     var statusAuth = verifyStatusToken();
+=======
+    var statusAuth = verifyAutentication();
+>>>>>>> eb2cc0ebcae7a113f1eff3186312a645b0322b5f
 };
 
 $("#btnAutenticar").click(function () {
