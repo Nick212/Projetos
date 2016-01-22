@@ -82,6 +82,22 @@ var generatorCode = function (data) {
 
 
 /*----------------------------------------------
+<<<<<<< HEAD
+                Listener Login
+----------------------------------------------*/
+setInterval( function(){
+    var resultAuth = verifyStatusToken();
+    console.log("Em Here")
+ }, 3000);
+
+/*----------------------------------------------
+                Authentication Login
+----------------------------------------------*/
+
+var verifyStatusToken = function () {
+  var token = $("#text").val();
+    $.get("http://localhost/SwLoginAPI/api/verifytoken?token=" + token,//http://localhost/SwLoginAPI/api/verifytoken?token=f58c27c3-8dee-4690-ba03-7698c6b6cba1
+=======
                 Auth Login
 ----------------------------------------------*/
 
@@ -90,6 +106,7 @@ var verifyAutentication = function () {
     var token = $("#text").val();
     
     $.get("http://localhost/SwLoginAPI/api/verifytoken?token=" + token,
+>>>>>>> eb2cc0ebcae7a113f1eff3186312a645b0322b5f
         function (data) {
             if (data.object != null && data.object != undefined && data.hasError !== true) {
               if(data.object.token === token && data.object.dataUtilizacao !== null && data.object.documento !== undefined){
@@ -113,7 +130,11 @@ var verifyAutentication = function () {
 };
 
 var setTrigger = function () {
+<<<<<<< HEAD
+    var statusAuth = verifyStatusToken();
+=======
     var statusAuth = verifyAutentication();
+>>>>>>> eb2cc0ebcae7a113f1eff3186312a645b0322b5f
 };
 
 $("#btnAutenticar").click(function () {

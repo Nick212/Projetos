@@ -5,7 +5,15 @@
       "projectTypeName": "com.intel.xdk.projecttype.jsapp",
       "src": "jsapp/sample-barcode-scanner/sample.zip",
       "projectGuid": "0390d24f-7af2-4156-aeb8-0e752586d65a",
+<<<<<<< HEAD
       "lastModifiedDate": 1453421302419,
+=======
+<<<<<<< HEAD
+      "lastModifiedDate": 1453248662349,
+=======
+      "lastModifiedDate": 1453307819011,
+>>>>>>> eb2cc0ebcae7a113f1eff3186312a645b0322b5f
+>>>>>>> 92985c8bc2dcfc2091c389cd25d9f3911e19383f
       "creationDate": 1452773881669
     },
     "XDK-app-designer": "false",
