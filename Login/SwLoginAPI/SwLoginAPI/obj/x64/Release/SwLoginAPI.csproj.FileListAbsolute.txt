@@ -9,8 +9,6 @@ F:\Workspace_GIT\Projetos\Login\SwLoginAPI\SwLoginAPI\bin\Dotz.Core.Framework.dl
 F:\Workspace_GIT\Projetos\Login\SwLoginAPI\SwLoginAPI\bin\Dotz.Core.Framework.Log.dll
 F:\Workspace_GIT\Projetos\Login\SwLoginAPI\SwLoginAPI\bin\Dotz.Core.MessageBroker.Message.dll
 F:\Workspace_GIT\Projetos\Login\SwLoginAPI\SwLoginAPI\bin\Elasticsearch.Net.dll
-F:\Workspace_GIT\Projetos\Login\SwLoginAPI\SwLoginAPI\bin\EntityFramework.dll
-F:\Workspace_GIT\Projetos\Login\SwLoginAPI\SwLoginAPI\bin\EntityFramework.SqlServer.dll
 F:\Workspace_GIT\Projetos\Login\SwLoginAPI\SwLoginAPI\bin\maxiPago.dll
 F:\Workspace_GIT\Projetos\Login\SwLoginAPI\SwLoginAPI\bin\MaxMind.Db.dll
 F:\Workspace_GIT\Projetos\Login\SwLoginAPI\SwLoginAPI\bin\MaxMind.GeoIP2.dll
@@ -94,8 +92,6 @@ F:\Workspace_GIT\Projetos\Login\SwLoginAPI\SwLoginAPI\bin\System.Web.WebPages.xm
 F:\Workspace_GIT\Projetos\Login\SwLoginAPI\SwLoginAPI\bin\System.Web.WebPages.Deployment.xml
 F:\Workspace_GIT\Projetos\Login\SwLoginAPI\SwLoginAPI\bin\System.Web.WebPages.Razor.xml
 F:\Workspace_GIT\Projetos\Login\SwLoginAPI\SwLoginAPI\bin\Antlr3.Runtime.pdb
-F:\Workspace_GIT\Projetos\Login\SwLoginAPI\SwLoginAPI\bin\EntityFramework.xml
-F:\Workspace_GIT\Projetos\Login\SwLoginAPI\SwLoginAPI\bin\EntityFramework.SqlServer.xml
 F:\Workspace_GIT\Projetos\Login\SwLoginAPI\SwLoginAPI\bin\Microsoft.AspNet.Identity.Core.xml
 F:\Workspace_GIT\Projetos\Login\SwLoginAPI\SwLoginAPI\bin\Microsoft.AspNet.Identity.Owin.xml
 F:\Workspace_GIT\Projetos\Login\SwLoginAPI\SwLoginAPI\bin\Microsoft.AspNet.Identity.EntityFramework.xml

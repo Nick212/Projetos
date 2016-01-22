@@ -47,10 +47,11 @@
     <link rel="stylesheet" href="css/app.css">
     <link rel="stylesheet" href="js/jquery.mobile.custom.structure.min.css">
     <link rel="stylesheet" href="js/jquery.mobile.custom.theme.min.css">
+    <link rel="stylesheet" href="libs/materialize/css/materialize.min.css">
 </head>
 
 
-<body>
+<body style="background-color:000;">
 
     <script src="cordova.js"></script>
     <!-- "Phantom" cordova.js required for projects that use plugins -->
@@ -64,92 +65,37 @@
     <script src="js/util.js"></script>
     <!--biblioteca jquery-->
     <script src="libs/jquery-1.12.0.js"></script>
-    <script src="libs/jquery.mobile.custom.min.js"></script>
+    <script src="libs/materialize/js/materialize.min.js"></script>
     
-
-    <h1>Login QRcode</h1>
-    
-    <p class="align-center">
-        <button type="button" id="id_btnScan" onclick="scan();">Scan</button><br/>
-        <button type="button" id="btnSendToken" onclick="sendToken();">Send</button>
-        </p>
-    
-    CEP <input  type="text" id="txtCpf" style="height:40px;"/>
-    <br/><br/><br/>
-    
-    
-    <div class="align-center">
-        <textarea id="id_textArea" class="align-left" readonly="readonly" wrap="off"></textarea>
+    <div>
+        <img src="img/logo-dotz.png">
     </div>
-    <!-- IMPORTANT: Do not include a weinre script tag as part of your release builds! -->
-    <!-- Place your remote debugging (weinre) script URL from the Test tab here, if it does not work below -->
-    <!-- <script src="http://debug-software.intel.com/target/target-script-min.js#insertabiglongfunkynumberfromthexdkstesttab"></script> -->
-
-    <!-- See <head> section above for additional JS libraries loaded as part of this application. -->
-
-
-
-    <!-- IMPORTANT: Do not include a weinre script tag as part of your release builds! -->
-    <!-- Place your remote debugging (weinre) script URL from the Test tab here, if it does not work above -->
-    <!-- <script src="http://debug-software.intel.com/target/target-script-min.js#insertabiglongfunkynumberfromthexdkstesttab"></script> -->
+    <br/><br/>
+    
+    <div>
+        <a class="waves-effect waves-light btn-large" id="id_btnScan" onclick="scan();">Scan</a>
+        <a class="waves-effect waves-light btn-large" id="btnSendToken" onclick="sendToken();">Send</a>
+    </div>
+    <br/><br/>
+    
+    <div class="row">
+    <form class="col s12">
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="txtCpf" type="text" class="validate" >
+          <label for="txtCpf">CPF</label>
+        </div>
+      </div>          
+   
+      <div class="row">
+        <div class="input-field col s12">
+          <textarea placeholder="Placeholder" id="id_textArea" class="materialize-textarea" readonly="readonly"></textarea>
+          <label for="id_textArea">Textarea</label>
+        </div>
+      </div>
+    </form>
+  </div>
+    
 </body>
-
-<!--
-    Recommended JavaScript library load order for hybrid Cordova apps:
-
-    * "Device-Independent" JavaScript libraries.
-    * optional: weinre debug script tag for remote console debug (see notes).
-    * Intel XDK device JavaScript library.
-    * Cordova/PhoneGap device JavaScript library.
-    * "Device-Dependent" JavaScript libraries.
-    * Application JavaScript <script> tags and libraries.
-    * optional: weinre debug script tag for remote console debug (see notes).
-
-    In complex projects, the JavaScript load order is important. You must insure that the underlying
-    device API native code finishes its init, which usually takes longer than the webview init...
-
-    VERY IMPORTANT: notice that all of the libraries used in this project are located within the app's
-    local directories, which means they will get bundled with the app. They are NOT being pulled in
-    over the net. In most cases, this is what you should be doing when you build a hybrid mobile app.
-    This insures that you always use the JS code that you debugged against AND that you are not requiring
-    a data connection (network connection) to get the app started. If your app startup required a data
-    connection to initialize and start interaction with the user, lack of a reliable network connection
-    could be disasterous. Not to mention it generally results in a slower load time. Loading locally is
-    is much friendlier to your end user's data plan and battery.  :-)
-
-    NOTE: do not use a directory prefix with the cordova.js file - it is inserted automatically
-    by the build system, emulator and other tools and is assumed to be in the index.html source directory.
-    You will not find this JS file anywhere in your project, it is a "phantom" library. If you do see
-    copies of this file as part of your project it should be removed to avoid confusing the Intel XDK.
-
-    LIBRARY NOTE: If you are using a large number of JavaScript libraries, especially third-party libraries
-    (like jQuery, {{ mustache }}, Underscore, etc.) that are "independent" of the device APIs provided
-    by the Cordova library and plugins - and they are independent of your application - your
-    app initialization will be most successful if you load these libraries BEFORE the Cordova JS file,
-    in the <head> section of your index.html file. Obviously, any code that depends on Cordova APIs
-    must be loaded AFTER the cordova.js library.
-
-    Libraries that are "independent" of the device APIs are libraries that you could use in a desktop
-    browser in a normal web page or web app. "Dependent" libraries are, most likely, your own code
-    that you've written specifically to work with the Cordova device APIs. In some cases,
-    if your device-dependent code requires access to device-independent code to get started, you may
-    have to use something like CommonJS to force the device-dependent code to wait for the device-
-    independent code to initialize, otherwise you may have trouble getting your app started.
-
-    Because of this added dependency on the underlying native code (device) initialization, you should
-    not use the "document ready" event to start your application. You should wait for the "device ready"
-    event before you begin your application (if it uses any device APIs); in practice, it is best to wait
-    for both. (See the init-dev.js file in this template for an example of how to do this, it generates
-    a custom "app.Ready" event that you can trigger off of and just forget about the other events.)
-
-    NOTE: *any* library that redefines addEventListener() or fiddles with outstanding events may
-    interfere with capturing the "device ready" event and should, therefore, be placed *BEFORE*
-    the Cordova JS library in the load order.
-
-    ALSO: if you use weinre for debugging (ala the Test tab or your own), you may have to experiment with
-    the placement of the weinre script. Some recommended locations are shown within. If these locations
-    do not work, you may have to experiment. The optimum placement can be app-specific, primarily as a
-    function of the included JavaScript libraries and your initialization.
--->
-
+    
 </html>

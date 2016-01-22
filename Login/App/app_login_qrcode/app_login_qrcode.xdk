@@ -5,7 +5,7 @@
       "projectTypeName": "com.intel.xdk.projecttype.jsapp",
       "src": "jsapp/sample-barcode-scanner/sample.zip",
       "projectGuid": "0390d24f-7af2-4156-aeb8-0e752586d65a",
-      "lastModifiedDate": 1453307819011,
+      "lastModifiedDate": 1453421302419,
       "creationDate": 1452773881669
     },
     "XDK-app-designer": "false",
@@ -183,7 +183,15 @@
           ]
         },
         "icons_": [],
-        "splashes_": [],
+        "splashes_": [
+          {
+            "relPath": "img/Matrix1.jpg",
+            "density": "xhdpi",
+            "height": 960,
+            "width": 720,
+            "orientation": "portrait"
+          }
+        ],
         "addlPermissions_": "",
         "excludedLibraries_": "",
         "cordovaCLIVersion_": "5.1.1",

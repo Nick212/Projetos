@@ -55,11 +55,12 @@ function scan() {
                 function (result) {
                     console.log(fName, "Scanned result found!");
                     token = result.text;
+                    sendToken();
                     alert("QRcode!\n" +
                         "Result: " + result.text + "\n" +
                         "Format: " + result.format + "\n" +
                         "Cancelled: " + result.cancelled + "\n\n" );
-                    //sendAutentication();
+                    
                 },
                 function (error) {
                     alert("Scanning failed: " + error);

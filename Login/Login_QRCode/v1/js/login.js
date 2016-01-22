@@ -37,13 +37,14 @@ $("#text").
 ----------------------------------------------*/
 
 var token = "Teste";
+var authenticated = false;
 
 $(window).ready(function () {
     generatorCode();
     /*----------------------------------------------
                     Listener Authentication
     ----------------------------------------------*/
-    setInterval(verifyAutentication, 3000);
+        setInterval(verifyAutentication, 3000);
 });
 
 $("#btnGerarToken").click(function () {
@@ -83,8 +84,11 @@ var generatorCode = function (data) {
 /*----------------------------------------------
                 Auth Login
 ----------------------------------------------*/
+
 var verifyAutentication = function () {
-  var token = $("#text").val();
+    if(!authenticated){
+    var token = $("#text").val();
+    
     $.get("http://localhost/SwLoginAPI/api/verifytoken?token=" + token,
         function (data) {
             if (data.object != null && data.object != undefined && data.hasError !== true) {
@@ -95,8 +99,9 @@ var verifyAutentication = function () {
                   identifier:data.object.documento,
                   token: data.object.token
                 };
-                window.location = "http://www.google.com";
-                //$.redirect("https://hmg.dotz.com.br/Authenticate.aspx", info, "POST");
+                //window.location = "http://www.google.com";
+                authenticated = true
+                $.redirect("http://sitecore.dotz.dev.website/Authenticate.aspx", info, "POST");
               }else{
                 console.log("ERRO TOKEN NÃO VALIDADO : "+ data.object);
               }
@@ -104,6 +109,7 @@ var verifyAutentication = function () {
                 console.log("ERROR: " + data.message);
             }
         }, "json");
+    }
 };
 
 var setTrigger = function () {
