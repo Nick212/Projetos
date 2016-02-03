@@ -409,7 +409,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>50169</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost/SwLoginAPI</IISUrl>
+          <IISUrl>http://localhost:6060</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

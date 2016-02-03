@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web.Http;
+using System.Xml.Linq;
 using Dotz.Core.Business.Administracao.Aplicacao.Interface;
 using Dotz.Core.Business.ContaCorrente.Usuario.Interface;
 using Dotz.Core.Data.Administracao.Aplicacao.Model.Entities;
@@ -11,6 +12,11 @@ namespace SwLoginAPI.Controllers
     [RoutePrefix("api")]
     public class LoginController : ApiController
     {
+        /// <summary>
+        /// Método destinado para o Mobile
+        /// </summary>
+        /// <param name="document"></param>
+        /// <returns>HttpActionResult</returns>
         [HttpGet]
         [Route("user")]
         public IHttpActionResult GetIdentifierUser(string document)
@@ -55,14 +61,15 @@ namespace SwLoginAPI.Controllers
 
             if (validToken != null && user != null)
             {
-                
+
                 var alterResult = tokenBsvc.Alterar(new AdmTokenFila()
                 {
+
                     AplicacaoId = new Guid(System.Configuration.ConfigurationManager.AppSettings["APLICACAO_ID_SITE"]),
                     Token = new Guid(token),
                     Documento = user.Documento,
                     IdAutorRequisicao = idAutorRequest,
-                    UsuarioId =  validToken.UsuarioId,
+                    UsuarioId = user.UsrUsuarioId,
                     DataInclusao = validToken.DataInclusao,
                     DataUtilizacao = validToken.DataUtilizacao,
                     Extra = validToken.Extra,
@@ -88,7 +95,7 @@ namespace SwLoginAPI.Controllers
                 Object = validToken
             });
         }
-        
+
         /// <summary>
         /// Web Site Solicita Token
         /// </summary>
@@ -97,7 +104,8 @@ namespace SwLoginAPI.Controllers
         [Route("generatorToken")]
         public IHttpActionResult GerarToken()
         {
-            var newToken = GetNewToken();
+            //var newToken = GetNewToken();
+            var newToken = GetNewTokenDynamic();
             if (newToken != null)
             {
                 return Ok(new
@@ -116,18 +124,11 @@ namespace SwLoginAPI.Controllers
             });
         }
 
-        private AdmTokenFila GetNewToken()
-        {
-            var tokenBsvc = DotzCore.GetBusinessService<ITokenBSvc>();
-            var usuarioId = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["USUARIO_GENERETOR_TOKEN"]);
-            var tempoExpiracaoResgateSenha = DotzCore.Application.Parameters.Get<int>("TEMPO_EXPIRACAO_RESGATE_SENHA_EMAIL");
-            var aplicacaoId = System.Configuration.ConfigurationManager.AppSettings["APLICACAO_ID_SITE"];
-
-            var tokenGerado = tokenBsvc.CriarToken(eTipoTokenFila.AutenticacaoUsuario, usuarioId, DateTime.Now.AddMinutes(tempoExpiracaoResgateSenha),aplicacaoId);
-
-            return tokenGerado;
-        }
-
+        /// <summary>
+        /// Método para verificar autenticidade do token
+        /// </summary>
+        /// <param name="token"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("verifyToken")]
         public IHttpActionResult VerifyAuthToken(string token)
@@ -147,7 +148,7 @@ namespace SwLoginAPI.Controllers
                     Message = "Sucesso ao Verificar o Token",
                     HasError = false,
                     Object = statusToken
-                }); 
+                });
             }
             return Ok(new
             {
@@ -156,5 +157,35 @@ namespace SwLoginAPI.Controllers
                 Object = statusToken
             });
         }
+
+        /// <summary>
+        /// Metodo gera Token a partir de usuario ID
+        /// </summary>
+        /// <returns></returns>
+        private AdmTokenFila GetNewToken()
+        {
+            var tokenBsvc = DotzCore.GetBusinessService<ITokenBSvc>();
+            var usuarioId = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["USUARIO_GENERETOR_TOKEN"]);
+            var tempoExpiracaoResgateSenha = DotzCore.Application.Parameters.Get<int>("TEMPO_EXPIRACAO_RESGATE_SENHA_EMAIL");
+            var aplicacaoId = System.Configuration.ConfigurationManager.AppSettings["APLICACAO_ID_SITE"];
+
+            var tokenGerado = tokenBsvc.CriarToken(eTipoTokenFila.AutenticacaoUsuario, usuarioId, DateTime.Now.AddMinutes(tempoExpiracaoResgateSenha), aplicacaoId);
+
+            return tokenGerado;
+        }
+
+        /// <summary>
+        /// Método gera Token dinâmico, sem precisar atrelar a um usuario
+        /// </summary>
+        /// <returns></returns>
+        private AdmTokenFila GetNewTokenDynamic()
+        {
+            var tokenBsvc = DotzCore.GetBusinessService<ITokenBSvc>();
+            var token = tokenBsvc.CriarToken(eTipoTokenFila.AutenticacaoUsuario, null);
+
+            return token;
+        }
+
+
     }
 }
